@@ -5,9 +5,27 @@
 package comengo.modelo.producto;
 
 /**
- *
+ * Interfaz fundamental que representa un plato servible en un pedido.
+ * <p>
+ * Es la base para aplicar el patrón <b>Decorator</b>. Tanto el plato principal
+ * ({@link PlatoBase}) como los ingredientes extra (Decoradores) implementarán
+ * esta interfaz, permitiendo anidar precios y descripciones.
+ * </p>
+ * 
  * @author fernando
  */
 public interface IPlato {
+    
+    /**
+     * Obtiene la descripción completa del plato, incluyendo personalizaciones.
+     * @return Descripción del producto.
+     */
+    public String getDescripcion();
+    
+    /**
+     * Calcula el precio final del plato acumulando el precio base y los extras.
+     * @return Precio total en euros.
+     */
+    public double getPrecio();
     
 }
