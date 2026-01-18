@@ -11,19 +11,24 @@ package comengo.modelo.producto;
 public class BuilderSmash extends HamburguesaBuilder {
     
     @Override
-    public void buildPan() {
+    public void configurarEstilo() {
+        hamburguesa.setEsSmash(true); // Activa el doble de carne en getIngredientes()
+    }
+    
+    @Override
+    public void prepararPan() {
         // La Smash siempre usa pan brioche
         hamburguesa.setTipoPan("Pan Brioche Tostado");
     }
     
     @Override
-    public void buildCarne() {
+    public void prepararCarne() {
         // La técnica Smash requiere carne aplastada y muy hecha
         hamburguesa.setPuntoCarne("Smash (Muy hecha y crujiente)");
     }
     
     @Override
-    public void buildSalsa() {
+    public void prepararSalsa() {
         hamburguesa.setSalsa("Salsa Secreta Smash");
     }
 }

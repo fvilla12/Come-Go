@@ -2,6 +2,8 @@
 ## Aplicación web para el restaurante simulado «Come&Go».
 ## Este proyecto conforma el *trabajo final* para la asignatura **Patrones Software**, asignatura optativa del cuarto curso del *Grado en Ingeniería Informática* de la ***Universidad de Alcalá***.
 
+¡¡ES NECESARIO EL USO DE itemMenu!!??
+
 ## Caso de uso 1 (PERSONALIZAR HAMBURGUESA):
 
 ~~~Java
@@ -14,7 +16,27 @@ miHamburguesa = new ExtraQueso(miHamburguesa);
 miHamburguesa = new ExtraBacon(miHamburguesa);
 // Precio: 12.75€ | Desc: "Hamburguesa Smash..., con Extra de Queso, con Extra de Bacon"
 ~~~
+## Uso de ProcesarPedidoServlet:
 
+~~~Java
+// Dentro de ProcesarPedidoServlet.java
+String estilo = request.getParameter("estiloHamburguesa"); // "SMASH" o "CLASICA"
+HamburguesaBuilder builder;
+
+if ("SMASH".equals(estilo)) {
+    builder = new BuilderSmash();
+} else {
+    builder = new BuilderClasica();
+}
+
+builder.crearNuevaHamburguesa();
+builder.definirTipo();
+builder.establecerPrecio();
+builder.configurarPunto(puntoCarne);
+builder.configurarPan(tipoPan);
+
+Hamburguesa base = builder.getHamburguesa();
+~~~
 ## Integración de descuentos en pedidos:
 
 ~~~Java

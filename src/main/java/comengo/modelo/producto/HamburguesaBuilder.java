@@ -13,26 +13,30 @@ import comengo.modelo.menu.ItemMenu;
 public abstract class HamburguesaBuilder {
     
     protected Hamburguesa hamburguesa;
+    protected ItemMenu itemMenu;
     
     /**
      * Crea una nueva instancia de Hamburguesa para empezar a trabajar.
      */
-    public void crearNuevaHamburguesa(ItemMenu itemMenu) {
+    public void crearNuevaHamburguesa() {
         this.hamburguesa = new Hamburguesa(itemMenu);
     }
     
+    /**
+     * Devuelve el producto complejo que se construye.
+     *
+     * @return Producto Hamburguesa.
+     */
     public Hamburguesa getHamburguesa() {
         return hamburguesa;
     }
     
     // Pasos abstractos que cada receta concreta debe implementar a su manera
-    public abstract void buildPan();
-    public abstract void buildCarne();
-    public abstract void buildSalsa();
-    
-    // Paso común (Hook) que puede ser usado por cualquier builder
-    public void buildNota(String nota) {
-        hamburguesa.setNotaCocina(nota);
+    public abstract void configurarEstilo();
+    public abstract void prepararPan();
+    public abstract void prepararCarne();
+    public abstract void prepararSalsa();
+    public void añadirNota(String nota){
+        this.hamburguesa.setNotaCocina(nota);
     }
-    
 }

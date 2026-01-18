@@ -4,25 +4,52 @@
  */
 package comengo.modelo.producto;
 
+import comengo.modelo.menu.ItemMenu;
+
 /**
  *
  * @author fernando
  */
 public class BuilderClasica extends HamburguesaBuilder {
 
-    @Override
-    public void buildPan() {
-        hamburguesa.setTipoPan("Pan con Sésamo");
+    public BuilderClasica(ItemMenu itemMenu) {
+        super(itemMenu);
     }
 
     @Override
-    public void buildCarne() {
-        // La clásica es al punto por defecto
-        hamburguesa.setPuntoCarne("Al punto");
+    public void configurarEstilo() {
+        hamburguesa.setEsSmash(false);
+    }
+    
+    @Override
+    public void añadirNota(String nota) {
+        super.añadirNota(nota);
     }
 
     @Override
-    public void buildSalsa() {
-        hamburguesa.setSalsa("Ketchup y Mostaza");
+    public void prepararSalsa(String salsa) {
+        super.prepararSalsa(salsa);
     }
+
+    @Override
+    public void prepararCarne(String punto) {
+        super.prepararCarne(punto); 
+    }
+
+    @Override
+    public void prepararPan(String pan) {
+        super.prepararPan(pan);
+    }
+
+    @Override
+    public Hamburguesa getHamburguesa() {
+        return super.getHamburguesa();
+    }
+
+    @Override
+    public void crearNuevaHamburguesa() {
+        super.crearNuevaHamburguesa(); 
+    }
+    
+    
 }

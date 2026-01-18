@@ -26,6 +26,7 @@ public class Hamburguesa implements IPlato {
     private String puntoCarne;
     private String salsa;
     private String notaCocina;
+    private boolean esSmash = false;
     
     /**
      * Constructor protegido. Se debe utilizar {@link HamburguesaBuilder} para instanciar.
@@ -51,6 +52,9 @@ public class Hamburguesa implements IPlato {
     }
     protected void setNotaCocina(String notaCocina) {
         this.notaCocina = notaCocina;
+    }
+    protected void setEsSmash(boolean esSmash) {
+        this.esSmash = esSmash;
     }
     
     /**
@@ -91,7 +95,7 @@ public class Hamburguesa implements IPlato {
     public Map<String, Integer> getIngredientes() {
         Map<String, Integer> requisitos = new HashMap<>();
         requisitos.put("Pan", 1);
-        requisitos.put("Carne", 1); // O 2 si es Smash, según tu lógica del Builder
+        requisitos.put("Carne", esSmash ? 2 : 1);
         return requisitos;
     }
 }
