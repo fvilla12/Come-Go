@@ -5,6 +5,7 @@
 package comengo.modelo.producto;
 
 import comengo.modelo.menu.ItemMenu;
+import java.util.*;
 
 /**
  * Implementación concreta de una hamburguesa sin decorar.
@@ -84,5 +85,13 @@ public class Hamburguesa implements IPlato {
     @Override
     public double getPrecio() {
         return itemMenu.getPrecio();
+    }
+    
+    @Override
+    public Map<String, Integer> getIngredientes() {
+        Map<String, Integer> requisitos = new HashMap<>();
+        requisitos.put("Pan", 1);
+        requisitos.put("Carne", 1); // O 2 si es Smash, según tu lógica del Builder
+        return requisitos;
     }
 }

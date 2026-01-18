@@ -4,10 +4,7 @@
  */
 package comengo.modelo.usuarios;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import comengo.modelo.excepciones.EntidadDuplicadaException;
 import comengo.modelo.db.ConexionDB;
 
@@ -68,5 +65,33 @@ public class GestorUsuarios {
                 System.out.println("LOG: Usuario " + usuario.getCorreo() + " persistido en Derby.");
             }
         }
+    }
+    
+    /**
+     * Valida las credenciales de un usuario para el inicio de sesión.
+     * * @param correo Correo electrónico del usuario.
+     * @param clave Contraseña introducida.
+     * @return El objeto {@link Usuario} si es válido, null en caso contrario.
+     * @throws SQLException Si ocurre un error en la consulta SQL.
+     */
+    public Usuario validarLogin(String correo, String clave) throws SQLException {
+        String sql = "SELECT NOMBRE, TIPO FROM USUARIOS WHERE CORREO = ? AND CLAVE = ?";
+        
+        try (Connection conn = ConexionDB.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, correo);
+            pstmt.setString(2, clave);
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String nombre = rs.getString("NOMBRE");
+                    String tipo = rs.getString("TIPO");
+                    // Retornamos un objeto anónimo o específico según el tipo
+                    return new Usuario(nombre, correo, clave) {}; 
+                }
+            }
+        }
+        return null;
     }
 }

@@ -4,6 +4,8 @@
  */
 package comengo.modelo.producto;
 
+import java.util.Map;
+
 /**
  *  Decorador concreto que añade "Extra de Cebolla" a un plato.
  * <p>
@@ -41,5 +43,12 @@ public class ExtraCebolla extends DecoradorPlato {
     @Override
     public double getPrecio() {
         return platoDecorado.getPrecio() + PRECIO_EXTRA;
+    }
+    
+    @Override
+    public Map<String, Integer> getIngredientes() {
+        Map<String, Integer> requisitos = platoDecorado.getIngredientes();
+        requisitos.put("Queso", requisitos.getOrDefault("Queso", 0) + 1);
+        return requisitos;
     }
 }

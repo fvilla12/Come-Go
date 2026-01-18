@@ -1,0 +1,103 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 ene 2026, 21:18:34
+    Author     : fernando
+
+    Paleta de colores basada en RGB(173, 50, 50) - #AD3232 
+*/
+
+:root {
+    --color-fondo: rgb(173, 50, 50);      /* Rojo corporativo */
+    --color-secundario: rgb(245, 245, 245); /* Blanco humo para tarjetas */
+    --color-texto: rgb(45, 45, 45);       /* Gris oscuro para lectura */
+    --color-acento: rgb(255, 193, 7);     /* Dorado/Amarillo para botones */
+    --color-error: rgb(220, 53, 69);      /* Rojo brillante para errores */
+}
+
+body {
+    background-color: var(--color-fondo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--color-texto);
+}
+
+.container {
+    background-color: var(--color-secundario);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--color-fondo);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: rgb(232, 174, 0);
+}
+
+.error-msg {
+    background-color: #f8d7da;
+    color: var(--color-error);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    border: 1px solid #f5c6cb;
+}
+
+a {
+    color: var(--color-fondo);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -4,6 +4,8 @@
  */
 package comengo.modelo.producto;
 
+import java.util.Map;
+
 /**
  * Interfaz fundamental que representa un plato servible en un pedido.
  * <p>
@@ -27,5 +29,7 @@ public interface IPlato {
      * @return Precio total en euros.
      */
     double getPrecio();
+    
+    Map<String, Integer> getIngredientes();
     
 }

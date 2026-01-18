@@ -5,6 +5,9 @@
 package comengo.modelo.inventario;
 
 import comengo.modelo.excepciones.StockInsuficienteException;
+import comengo.modelo.pedidos.Pedido;
+import comengo.modelo.producto.IPlato;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -71,7 +74,7 @@ public class GestorInventario {
      * @param ingredientesAConsumir Mapa con los ingredientes y cantidades requeridas.
      * @throws StockInsuficienteException Si no hay stock suficiente para cubrir todo el pedido.
      */
-    public synchronized void consumirStock(Map<String, Integer> ingredientesAConsumir) throws Exception {
+    public synchronized void consumirStock(Map<String, Integer> ingredientesAConsumir) throws StockInsuficienteException {
         if (!hayStockSuficiente(ingredientesAConsumir)) {
             throw new StockInsuficienteException("Stock insuficiente para procesar el pedido.");
         }
@@ -81,6 +84,24 @@ public class GestorInventario {
             int cantidad = entry.getValue();
             stock.put(nombre, stock.get(nombre) - cantidad);
         }
+    }
+    
+    /**
+     * NUEVO MÉTODO: Orquestador para Pedidos.
+     * Extrae los ingredientes del pedido y delega en el método de consumo.
+     */
+    public void consumirStockParaPedido(Pedido pedido) throws StockInsuficienteException {
+        
+        Map<String, Integer> totalRequerido = new HashMap<>();
+
+        // Recorremos los platos para sumar todos los ingredientes necesarios
+        for (IPlato p : pedido.getProductos()) {
+            p.getIngredientes().forEach((nombre, cantidad) -> 
+                totalRequerido.merge(nombre, cantidad, Integer::sum));
+        }
+
+        // Llamamos a tu función original (la de abajo) con el mapa resultante
+        this.consumirStock(totalRequerido);
     }
     
     /**

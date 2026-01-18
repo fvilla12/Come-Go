@@ -36,5 +36,21 @@ public class Pedido {
         return totalBruto - descuento;
     }
 }
+~~~
 
+## Integración arranque aplicación:
+
+~~~Java
+// 1. Inicializar DB
+InicializadorDB.inicializarTablas();
+
+// 2. Configurar el sistema de notificaciones (Observer)
+GestorPedidos gestorNotificaciones = new GestorPedidos();
+gestorNotificaciones.suscribir(new NotificacionCocina());
+gestorNotificaciones.suscribir(new NotificacionCliente());
+gestorNotificaciones.suscribir(new ObservadorCamarero());
+
+// 3. Crear los controladores con el gestor compartido
+CocinaController cocinaCtrl = new CocinaController(gestorNotificaciones);
+PedidoController pedidoCtrl = new PedidoController(gestorNotificaciones);
 ~~~
