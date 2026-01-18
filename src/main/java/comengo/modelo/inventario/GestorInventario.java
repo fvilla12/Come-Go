@@ -4,6 +4,7 @@
  */
 package comengo.modelo.inventario;
 
+import comengo.modelo.excepciones.StockInsuficienteException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -68,11 +69,11 @@ public class GestorInventario {
      * </p>
      *
      * @param ingredientesAConsumir Mapa con los ingredientes y cantidades requeridas.
-     * @throws Exception Si no hay stock suficiente para cubrir todo el pedido.
+     * @throws StockInsuficienteException Si no hay stock suficiente para cubrir todo el pedido.
      */
     public synchronized void consumirStock(Map<String, Integer> ingredientesAConsumir) throws Exception {
         if (!hayStockSuficiente(ingredientesAConsumir)) {
-            throw new Exception("Stock insuficiente para procesar el pedido.");
+            throw new StockInsuficienteException("Stock insuficiente para procesar el pedido.");
         }
         
         for (Map.Entry<String, Integer> entry : ingredientesAConsumir.entrySet()) {

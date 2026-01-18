@@ -4,6 +4,8 @@
  */
 package comengo.modelo.pago;
 
+import comengo.modelo.excepciones.ErrorPagoException;
+
 /**
  * Interfaz común para el procesamiento de pagos en el sistema.
  * <p>
@@ -20,7 +22,7 @@ public interface IPago {
      *
      * @param importe Cantidad total a cobrar en euros.
      * @return {@code true} si la transacción fue exitosa, {@code false} en caso contrario.
-     * @throws Exception Si ocurre un error crítico durante la comunicación con la pasarela.
+     * @throws ErrorPagoException Si ocurre un error crítico durante la comunicación con la pasarela.
      */
-    boolean procesarPago(double importe) throws Exception;
+    boolean procesarPago(double importe) throws ErrorPagoException;
 }
