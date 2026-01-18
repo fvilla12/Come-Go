@@ -4,10 +4,27 @@
  */
 package comengo.modelo.pedidos;
 
+import comengo.modelo.producto.IPlato;
+
 /**
- *
+ * Pedido realizado físicamente en el local, asociado a una mesa.
  * @author fernando
  */
-public class PedidoMesa implements IPedido {
+public class PedidoMesa extends Pedido {
     
+    private final int numeroMesa;
+    
+    public PedidoMesa(String id, int numeroMesa) {
+        super(id);
+        this.numeroMesa = numeroMesa;
+    }
+    
+    public int getNumeroMesa() {
+        return numeroMesa;
+    }
+    
+    @Override
+    public double calcularTotal() {
+        return productos.stream().mapToDouble(IPlato::getPrecio).sum();
+    }
 }
