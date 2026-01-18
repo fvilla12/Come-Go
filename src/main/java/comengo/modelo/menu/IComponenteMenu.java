@@ -19,7 +19,7 @@ public interface IComponenteMenu {
      * Obtiene el nombre del plato o de la categoría.
      * @return El nombre descriptivo.
      */
-    public String getNombre();
+    String getNombre();
     
     /**
      * Obtiene el precio del componente.
@@ -29,18 +29,18 @@ public interface IComponenteMenu {
      * </p>
      * @return El precio en euros.
      */
-    public double getPrecio();
+    double getPrecio();
     
     /**
      * Obtiene una descripción textual del componente.
      * @return Descripción de los ingredientes o del contenido de la categoría.
      */
-    public String getDescripcion();
+    String getDescripcion();
     
     /**
      * Método auxiliar para verificar si el componente es apto para celíacos.
      * Ejemplo de operación recursiva en el patrón Composite.
      * @return true si es libre de gluten.
      */
-    public boolean esSinGluten();
+    boolean esSinGluten();
 }

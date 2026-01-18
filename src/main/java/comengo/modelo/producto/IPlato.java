@@ -20,12 +20,12 @@ public interface IPlato {
      * Obtiene la descripción completa del plato, incluyendo personalizaciones.
      * @return Descripción del producto.
      */
-    public String getDescripcion();
+    String getDescripcion();
     
     /**
      * Calcula el precio final del plato acumulando el precio base y los extras.
      * @return Precio total en euros.
      */
-    public double getPrecio();
+    double getPrecio();
     
 }

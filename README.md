@@ -14,3 +14,27 @@ miHamburguesa = new ExtraQueso(miHamburguesa);
 miHamburguesa = new ExtraBacon(miHamburguesa);
 // Precio: 12.75€ | Desc: "Hamburguesa Smash..., con Extra de Queso, con Extra de Bacon"
 ~~~
+
+## Integración de descuentos en pedidos:
+
+~~~Java
+// Ejemplo de uso en la clase Pedido
+public class Pedido {
+    private IEstrategiaDescuento estrategiaDescuento;
+    private double totalBruto;
+
+    // El sistema puede cambiar la estrategia en tiempo de ejecución
+    public void setEstrategiaDescuento(IEstrategiaDescuento estrategia) {
+        this.estrategiaDescuento = estrategia;
+    }
+
+    public double calcularTotalFinal() {
+        double descuento = 0;
+        if (estrategiaDescuento != null) {
+            descuento = estrategiaDescuento.calcularDescuento(totalBruto);
+        }
+        return totalBruto - descuento;
+    }
+}
+
+~~~
