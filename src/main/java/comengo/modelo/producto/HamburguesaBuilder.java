@@ -14,15 +14,15 @@ public abstract class HamburguesaBuilder {
     
     protected Hamburguesa hamburguesa;
     
-    public Hamburguesa getHamburguesa() {
-        return hamburguesa;
-    }
-    
     /**
      * Crea una nueva instancia de Hamburguesa para empezar a trabajar.
      */
     public void crearNuevaHamburguesa(ItemMenu itemMenu) {
         this.hamburguesa = new Hamburguesa(itemMenu);
+    }
+    
+    public Hamburguesa getHamburguesa() {
+        return hamburguesa;
     }
     
     // Pasos abstractos que cada receta concreta debe implementar a su manera
